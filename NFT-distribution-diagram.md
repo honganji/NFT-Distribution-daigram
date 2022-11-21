@@ -35,7 +35,7 @@ sequenceDiagram
     participant CC as Control-Contract
     participant TC as Text-Contract
     Note over CC,TC: check mint status
-    CC->>TC: check mint status
+    CC->>TC: check mint status 
     TC->>CC: return mint status
     Note over CC,TC: mint NFT
     CC->>TC: mint NFT
@@ -46,14 +46,22 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
-    ControlContract <--MintStatus
-    ControlContract <--TextUserStatus
-    TextContract <-- MintStatus
+    ControlContract -- MintStatus
+    ControlContract -- TextUserStatus
+    ITextContract <|-- TextContract
+    ITextContract -- MintStatus
 
     class ControlContract {
         -_textIdToAddress mapping`uint8 textId => address TextContract`
         +getTexts() List~TextUserStatus~
+        +setText(address TextContract)
         +checkMint(List~TextUserStatus~) List~TextUserStatus~
+        +mint(address User) MintStatus
+    }
+
+    class ITextContract {
+        <<Interface>>
+        +getStatus(address User) MintStatus
         +mint(address User) MintStatus
     }
 
