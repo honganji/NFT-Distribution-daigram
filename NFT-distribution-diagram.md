@@ -54,7 +54,7 @@ classDiagram
     class ControlContract {
         -_textIdToAddress mapping`uint8 textId => address TextContract`
         +getTexts() List~TextUserStatus~
-        +setText(address TextContract)
+        +addText(address TextContract)
         +checkMint(List~TextUserStatus~) List~TextUserStatus~
         +mint(address User) MintStatus
     }
