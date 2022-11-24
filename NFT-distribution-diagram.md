@@ -56,18 +56,21 @@ classDiagram
         +getTexts() List~TextUserStatus~
         +addText(address TextContract)
         +checkMint(List~TextUserStatus~) List~TextUserStatus~
+        +changeAvailable(address TextContract, address User)
         +mint(address User) MintStatus
     }
 
     class ITextContract {
         <<Interface>>
         +getStatus(address User) MintStatus
+        +changeAvailable(address User)
         +mint(address User) MintStatus
     }
 
     class TextContract {
         -_userToMintStatus mapping`address user => MintStatus status`
         +getStatus(address User) MintStatus
+        +changeAvailable(address User)
         +mint(address User) MintStatus
     }
 
